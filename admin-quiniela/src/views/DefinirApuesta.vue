@@ -42,7 +42,7 @@
               </v-col>
             </v-row>
             <div class="text-center">
-              <img :src="apuestaCliente.id_equipo.url_imagen" alt="" />
+              <img class="logo-apuesta" :src="apuestaCliente.id_equipo.url_imagen" alt="" />
               <h5>
                 Logo del equipo que apostó
                 {{ apuestaCliente.id_cliente.nombre }}.
@@ -303,6 +303,10 @@ export default {
 </script>
 
 <style scoped>
+.logo-apuesta{
+  max-width: 492px;
+}
+
 .imagen {
   width: 55px;
 }
