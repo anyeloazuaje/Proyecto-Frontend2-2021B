@@ -68,8 +68,12 @@ exports.obtenerApuestas = async (req, res) => {
         });
         return (objetoApuesta = {
           id,
-          id_equipo1: datosPrimerEquipo.nombre,
-          id_equipo2: datosSegundoEquipo.nombre,
+          id_equipo1: {
+            nombre:datosPrimerEquipo.nombre,
+            imagen:datosPrimerEquipo.url_imagen
+          },
+          id_equipo2: {nombre:datosSegundoEquipo.nombre, 
+            imagen:datosSegundoEquipo.url_imagen},
           costo,
           ganancia,
           fecha,
@@ -95,7 +99,7 @@ exports.obtenerApuesta = async (req, res) => {
     }
     const apuestaObtenida = await Promise.all(
       apuestaEncontrada.map(async (apuesta) => {
-        const { id, id_equipo1, id_equipo2, costo, ganancia, fecha } = apuesta;
+        const { id, id_equipo1, id_equipo2, costo, ganancia, fecha, fecha_resultado } = apuesta;
         const [datosPrimerEquipo] = await Equipo.findAll({
           where: {
             id: id_equipo1,
@@ -108,8 +112,16 @@ exports.obtenerApuesta = async (req, res) => {
         });
         return (objetoApuesta = {
           id,
-          id_equipo1: datosPrimerEquipo.nombre,
-          id_equipo2: datosSegundoEquipo.nombre,
+          id_equipo1 :{
+            id:datosPrimerEquipo.id,
+            nombre:datosPrimerEquipo.nombre,
+            imagen:datosPrimerEquipo.url_imagen,
+          },
+          id_equipo2: {
+            id:datosSegundoEquipo.id,
+            nombre:datosSegundoEquipo.nombre,
+            imagen:datosSegundoEquipo.url_imagen
+          },
           costo,
           ganancia,
           fecha,
@@ -335,7 +347,7 @@ exports.obtenerApuestasDelCliente = async (req, res) => {
     }
     const apuestaObtendida = await Promise.all(
       apuestasDelCliente.map(async (apuesta) => {
-        const { id_apuesta, id_equipo, id, fecha, apuestas_acertada } = apuesta;
+        const { id_apuesta, id_equipo, id, fecha, apuesta_acertada, resultado } = apuesta;
         const [infoApuesta] = await Apuestas.findAll({
           where: {
             id: id_apuesta,
@@ -359,12 +371,22 @@ exports.obtenerApuestasDelCliente = async (req, res) => {
         return (objetoApuestasCliente = {
           id,
           id_apuesta: {
-            equipo1: equipo1.nombre,
-            equipo2: equipo2.nombre,
+            equipo1: {
+              nombre:equipo1.nombre,
+              imagen:equipo1.url_imagen
+            },
+            equipo2: {
+              nombre:equipo2.nombre,
+              imagen:equipo2.url_imagen
+            }
           },
           fecha,
-          id_equipo: infoEquipo.nombre,
-          apuestas_acertada,
+          id_equipo:{
+            nombre: infoEquipo.nombre,
+            imagen:infoEquipo.url_imagen
+          },
+          apuesta_acertada,
+          resultado
         });
       })
     );

@@ -57,7 +57,7 @@ router.delete('/eliminar-categoria/:categoriaID', verificarRol, autenticacionAdm
 
 router.post('/crear-apuesta', verificarRol, autenticacionAdmin, controladorApuestas.crearApuesta);
 router.get('/obtener-apuestas',  controladorApuestas.obtenerApuestas);
-router.get('/obtener-apuesta/:apuestaID', verificarRol, autenticacionAdmin, controladorApuestas.obtenerApuesta);
+router.get('/obtener-apuesta/:apuestaID', verificarToken, controladorApuestas.obtenerApuesta);
 router.delete('/eliminar-apuesta/:apuestaID', verificarRol, autenticacionAdmin, controladorApuestas.eliminarApuesta);
 router.put('/actualizar-apuesta/:apuestaID', verificarRol, autenticacionAdmin, controladorApuestas.actualizarApuesta);
 
@@ -70,7 +70,7 @@ router.get('/obtener-apuestasCliente', autenticacionAdmin, controladorApuestas.o
 router.delete('/eliminar-apuestaCliente/:apuestaClienteID', verificarRol, autenticacionAdmin, controladorApuestas.eliminarApuestaCliente);
 router.get('/obtener-apuestaCliente/:apuestaClienteID', verificarRol, autenticacionAdmin, controladorApuestas.obtenerApuestaCliente);
 router.put('/definir-apuestaCliente/:apuestaClienteID', verificarRol, autenticacionAdmin, controladorApuestas.definirApuestaCliente);
-router.get('/obtener-apuestasGanadas', verificarRol, autenticacionAdmin, controladorApuestas.obtenerApuestasGanadas)
+router.get('/obtener-apuestasGanadas', controladorApuestas.obtenerApuestasGanadas)
 
 router.post('/cliente/login-cliente', controladorClientes.loginCliente)
 router.post('/cliente/registro-cliente', controladorClientes.registroCliente);
