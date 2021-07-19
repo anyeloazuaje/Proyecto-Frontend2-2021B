@@ -24,7 +24,7 @@
         </v-container>
       </template>
         <template v-if="noticias.length">
-          <v-simple-table>
+          <v-simple-table class="mb-5">
             <template v-slot:default>
               <thead>
                 <tr class="primary darken-1">
