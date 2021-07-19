@@ -1,15 +1,13 @@
 <template>
   <section>
-    <!-- SEPARAR EN COMPONETE -->
     <mdb-card class="card-image background">
       <div class="text-white text-center py-5 px-4 my-5">
         <div>
           <h2 class="card-title h1-responsive pt-3 mb-5 font-bold">
-            <strong>EJEMPLO</strong>
+            <strong>Iniciar Sesión</strong>
           </h2>
           <p class="mx-5 mb-5">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque,
-            similique?
+            Vive la emoción con nuestra variedad de apuestas especiales, promociones en eventos deportivos y noticias deportivas exclusivas. Ingresa tus datos utilizados en el Registro y disfruta de tu instancia en La Quiniela.
           </p>
         </div>
       </div>
