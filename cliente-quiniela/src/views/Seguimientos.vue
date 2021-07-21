@@ -6,7 +6,10 @@
     <template v-else>
       <template v-if="!seguimientos.length">
         <h3 class="mt-5 text-center font-weight-bold">
-          No tienes seguimientos registrados
+          No tienes seguimientos registrados 
+          <span class="heart">
+            <mdb-icon icon="heart"/>
+            </span>
         </h3>
       </template>
       <template v-else>
@@ -163,4 +166,73 @@ export default {
   --bs-table-accent-bg: #3f51b5;
   color: white;
 }
+</style>
+<style scoped>
+.heart{
+  color:purple
+}
+@media only screen and (max-width: 830px),
+  (min-device-width: 768px) and (max-device-width: 1024px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    margin: 0 0 1rem 0;
+    margin-top: 2em;
+  }
+
+  tr:nth-child(odd) {
+    background: #ccc;
+  }
+
+  td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  td:before {
+    position: absolute;
+    top: 0;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    font-weight: bold;
+  }
+
+  td:nth-of-type(1):before {
+    content: "Equipo:";
+  }
+  td:nth-of-type(2):before {
+    content: "Categoria:";
+  }
+  td:nth-of-type(3):before {
+    content: "Logo:";
+  }
+  td:nth-of-type(4):before {
+    content: "Fecha del seguimiento:";
+  }
+  td:nth-of-type(5):before {
+    content: "Acción:";
+  }
+}
+.bg-table {
+  background: #3c59a9;
+  color: white;
+}
+
 </style>
