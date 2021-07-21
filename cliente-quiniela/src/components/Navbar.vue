@@ -3,18 +3,35 @@
     <mdb-navbar-brand to="/"> La Quiniela </mdb-navbar-brand>
     <mdb-navbar-toggler>
       <mdb-navbar-nav class="margin-left">
-        <mdb-nav-item to="/" active> Inicio</mdb-nav-item>
-        <mdb-nav-item to="/noticias">Noticias</mdb-nav-item>
-        <mdb-nav-item to="/equipos">Equipos</mdb-nav-item>
-        <mdb-nav-item to="/">Apuestas</mdb-nav-item>
-        <mdb-nav-item to="/contacto">Contacto</mdb-nav-item>
+        <mdb-nav-item to="/" active>
+          Inicio <mdb-icon icon="home"
+        /></mdb-nav-item>
+        <mdb-nav-item to="/noticias"
+          >Noticias <mdb-icon icon="newspaper"
+        /></mdb-nav-item>
+        <mdb-nav-item to="/equipos"
+          >Equipos <mdb-icon icon="users"
+        /></mdb-nav-item>
+        <mdb-nav-item to="/apuestas"
+          >Apuestas <mdb-icon icon="dice"
+        /></mdb-nav-item>
+        <mdb-nav-item to="/contacto"
+          >Contacto <mdb-icon icon="envelope"
+        /></mdb-nav-item>
 
         <template v-if="!estaAutenticado">
-          <mdb-nav-item to="/iniciar-sesion">Login</mdb-nav-item>
-          <mdb-nav-item to="/registro">Registro</mdb-nav-item>
+          <mdb-nav-item to="/iniciar-sesion"
+            >Login <mdb-icon icon="user-lock"
+          /></mdb-nav-item>
+          <mdb-nav-item to="/registro"
+            >Registro <mdb-icon icon="user-plus" />
+          </mdb-nav-item>
         </template>
         <template v-if="estaAutenticado">
-          <mdb-nav-item @click="obtenerCoins"> Coins del cliente : <mdb-icon icon="dollar-sign"/> {{coinsCliente}} </mdb-nav-item>
+          <mdb-nav-item @click="obtenerCoins">
+            Coins del cliente : <mdb-icon icon="dollar-sign" />
+            {{ coinsCliente }}
+          </mdb-nav-item>
           <mdb-dropdown tag="li" class="nav-item">
             <mdb-dropdown-toggle
               tag="a"
@@ -28,10 +45,19 @@
               </span></mdb-dropdown-toggle
             >
             <mdb-dropdown-menu class="color">
-              <mdb-dropdown-item>Apuestas<mdb-icon class="pl-2" icon="trophy"/> </mdb-dropdown-item>
-              <mdb-dropdown-item @click="$router.push('/seguimientos')">Equipos Seguidos  <mdb-icon class="pl-2" icon="heart" /> </mdb-dropdown-item>
-              <mdb-dropdown-item @click="$router.push('/solicitud-recarga')">Solocitudes de recarga  <mdb-icon class="pl-2" icon="search-dollar" /> </mdb-dropdown-item>
-              <mdb-dropdown-item class="salir" @click="logoutCliente">Salir <mdb-icon icon="sign-out-alt" /></mdb-dropdown-item>
+              <mdb-dropdown-item @click="$router.push('/apuesta-cliente')"
+                >Apuestas<mdb-icon class="pl-2" icon="trophy" />
+              </mdb-dropdown-item>
+              <mdb-dropdown-item @click="$router.push('/seguimientos')"
+                >Equipos Seguidos <mdb-icon class="pl-2" icon="heart" />
+              </mdb-dropdown-item>
+              <mdb-dropdown-item @click="$router.push('/solicitud-recarga')"
+                >Solocitudes de recarga
+                <mdb-icon class="pl-2" icon="search-dollar" />
+              </mdb-dropdown-item>
+              <mdb-dropdown-item class="salir" @click="logoutCliente"
+                >Salir <mdb-icon icon="sign-out-alt"
+              /></mdb-dropdown-item>
             </mdb-dropdown-menu>
           </mdb-dropdown>
         </template>
@@ -41,8 +67,8 @@
 </template>
 
 <script>
-import Swal from 'sweetalert2'
-import {LOGOUT, MODIFICAR_COINS} from '@/store/types'
+import Swal from "sweetalert2";
+import { LOGOUT, MODIFICAR_COINS } from "@/store/types";
 import {
   mdbDropdown,
   mdbDropdownToggle,
@@ -54,7 +80,7 @@ import {
   mdbNavbarToggler,
   mdbNavbarNav,
   mdbNavItem,
-  mdbIcon
+  mdbIcon,
 } from "mdbvue";
 export default {
   name: "Navbar",
@@ -69,7 +95,7 @@ export default {
     mdbDropdownToggle,
     mdbDropdownMenu,
     mdbDropdownItem,
-    mdbIcon
+    mdbIcon,
   },
   computed: {
     estaAutenticado() {
@@ -82,8 +108,8 @@ export default {
       return this.$store.getters.coinsCliente;
     },
   },
-  methods:{
-     mostrarMensaje(tipoIcono, mensaje) {
+  methods: {
+    mostrarMensaje(tipoIcono, mensaje) {
       const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
@@ -100,10 +126,10 @@ export default {
         title: mensaje,
       });
     },
-    logoutCliente(){
-      this.$store.dispatch(LOGOUT)
+    logoutCliente() {
+      this.$store.dispatch(LOGOUT);
     },
-     async obtenerCoins() {
+    async obtenerCoins() {
       const estaAutenticado = this.$store.getters.estaAutenticado;
       if (estaAutenticado) {
         const clienteID = this.$store.getters.idCliente;
@@ -111,34 +137,33 @@ export default {
           `/cliente/obtener-coins/${clienteID}`
         );
         this.$store.dispatch(MODIFICAR_COINS, data);
-        this.mostrarMensaje('success', 'Coins sincronizados correctamente.')
+        this.mostrarMensaje("success", "Coins sincronizados correctamente.");
         return;
       }
     },
-  }
+  },
 };
 </script>
 <style scoped>
-.salir{
+.salir {
   color: white !important;
-    background: #F44336;
-    border-radius: 30em;
-    padding: 4px 1px;
-    text-align: center;
-    font-size: 1em;
-    font-weight: bold !important;
-    font-style: oblique  !important;
-    transition: .3s all;
+  background: #f44336;
+  border-radius: 30em;
+  padding: 4px 1px;
+  text-align: center;
+  font-size: 1em;
+  font-weight: bold !important;
+  font-style: oblique !important;
+  transition: 0.3s all;
 }
-.salir:hover{
-    background: #ff685d;
-
+.salir:hover {
+  background: #ff685d;
 }
 .cliente {
   text-transform: capitalize;
 }
 .margin-left {
-  margin-left: 24em;
+  margin-left: 13em;
 }
 .color {
   color: white;
@@ -149,3 +174,4 @@ export default {
   }
 }
 </style>
+
