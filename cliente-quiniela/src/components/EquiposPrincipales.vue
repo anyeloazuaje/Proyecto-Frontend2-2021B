@@ -75,7 +75,6 @@ import {
   mdbCardText,
   mdbCardFooter,
   mdbCardUp,
-  mdbCardAvatar,
   mdbCardGroup,
   mdbBtn,
   mdbView,
@@ -100,7 +99,6 @@ export default {
     mdbCardText,
     mdbCardFooter,
     mdbCardUp,
-    mdbCardAvatar,
     mdbCardGroup,
     mdbBtn,
     mdbView,
@@ -133,7 +131,7 @@ export default {
 </script>
 
 <style scoped>
-img{
+img {
   margin: 0 auto !important;
 }
 .img-fluid {
