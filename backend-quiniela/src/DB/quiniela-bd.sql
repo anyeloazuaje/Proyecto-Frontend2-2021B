@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 16-07-2021 a las 03:32:35
--- Versión del servidor: 5.7.31.
--- Versión de PHP: 7.2.24.
+-- Tiempo de generación: 19-07-2021 a las 00:38:56
+-- Versión del servidor: 5.7.31-0
+-- Versión de PHP: 7.2.24-0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -42,7 +42,8 @@ CREATE TABLE `apuestas` (
 
 INSERT INTO `apuestas` (`id`, `id_equipo1`, `id_equipo2`, `fecha`, `costo`, `ganancia`, `fecha_resultado`) VALUES
 (3, 1, 3, '2021-07-04 03:13:12', 40, 50, '2021-07-22'),
-(4, 2, 3, '2021-07-04 03:10:50', 30, 35, '2021-07-31');
+(4, 2, 3, '2021-07-04 03:10:50', 30, 35, '2021-07-31'),
+(5, 8, 2, '2021-07-18 17:24:24', 30, 60, '2021-07-31');
 
 -- --------------------------------------------------------
 
@@ -57,7 +58,7 @@ CREATE TABLE `apuestas_clientes` (
   `id_apuesta` int(11) NOT NULL,
   `fecha` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `apuesta_acertada` tinyint(1) NOT NULL DEFAULT '0',
-  `resultado` varchar(30) DEFAULT NULL
+  `resultado` varchar(300) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -65,8 +66,11 @@ CREATE TABLE `apuestas_clientes` (
 --
 
 INSERT INTO `apuestas_clientes` (`id`, `id_cliente`, `id_equipo`, `id_apuesta`, `fecha`, `apuesta_acertada`, `resultado`) VALUES
-(4, 1, 1, 3, '2021-07-08 18:28:53', 0, NULL),
-(5, 8, 2, 4, '2021-07-08 18:30:03', 1, 'Gano Barcelona 2 a 1');
+(5, 9, 2, 4, '2021-07-08 18:30:03', 1, 'Gano Barcelona 2 a 1'),
+(7, 8, 1, 3, '2021-07-17 21:36:47', 0, 'Gano Madrid 3 a 2 en Penales'),
+(8, 8, 2, 4, '2021-07-17 21:37:57', 1, 'Gano 2 a1'),
+(9, 8, 8, 5, '2021-07-18 17:26:22', 1, 'Gano 4 goles contra 3 a favor de Mancheste'),
+(10, 10, 8, 5, '2021-07-19 00:48:17', 1, 'Gano 2 goles a favor de Mancheste');
 
 -- --------------------------------------------------------
 
@@ -132,8 +136,9 @@ CREATE TABLE `clientes` (
 
 INSERT INTO `clientes` (`id`, `nombre`, `correo`, `clave`, `coins`) VALUES
 (1, 'Julio', 'julio@email.com', '$2b$10$UJjPioUvz2M63y2shHytL.CaXGuzjsfUd6B.VOBnXtilu/NxQQwGi', 255),
-(8, 'Jose', 'jose@correo.com', '$2b$10$VwaaK.zaw8GGiu/kr3H5xeyGHHel6CJQW/HhaU6xZKKaDLSr/0wD.', 417),
-(9, 'Carlos', 'carlos@gmail.com', '$2b$10$jZLCih6La7ItfiA8cVjdL.lg24DlmwNGbYvMWz3wB.lduSuKrBIiq', 284);
+(8, 'Jose', 'jose@correo.com', '$2b$10$VwaaK.zaw8GGiu/kr3H5xeyGHHel6CJQW/HhaU6xZKKaDLSr/0wD.', 432),
+(9, 'Carlos', 'carlos@gmail.com', '$2b$10$jZLCih6La7ItfiA8cVjdL.lg24DlmwNGbYvMWz3wB.lduSuKrBIiq', 284),
+(10, 'Luis', 'luis@correo.com', '$2b$10$eFHrzROmoG1vBwaoQcm1buFMLwh.VcZWjSAPjZY8tVfz.lbKyQ/6C', 285);
 
 -- --------------------------------------------------------
 
@@ -219,7 +224,8 @@ INSERT INTO `noticias` (`id`, `titulo`, `fecha`, `descripcion`, `id_autor`, `id_
 (13, 'Juego de Estrellas 2021: Lo que debes saber', '2021-07-10 17:27:56', 'Lo que normalmente sirve como una distracción a mediados de temporada tiene un significado mayor: El Juego de Estrellas. En el 2021, juntar a los mejores jugadores de béisbol en el Coors Field de Colorado no sólo será un evento de entretenimiento, sino un símbolo del resurgir. Luego de que el coronavirus nos arrebatara tanta vida y libertad, llega un evento al centro de Denver que ejemplifica la reapertura oficial de las Mayores.\r\n\r\nComo mucho de lo ocurrido en el último año y medio, el Juego de Estrellas sufrió una alteración a último momento. Luego de un cambio en la planificación, el Coors Field está listo para recibir el Clásico de Media Temporada por primera vez desde 1998.\r\n\r\n\r\nY  si el Coors es lo que conocemos del Coors, entonces será un evento bien emocionante. (El Juego de Estrellas de 1998 lo ganó la Liga Americana por 13-8, el marcador más abultado en la historia del evento).\r\n\r\nYa tenemos garantizado presenciar historia, con Shohei Ohtani convirtiéndose en el primer jugador en la historia en batear y lanzar en el evento que tuvo sus inicios en 1933.\r\n\r\nPero con tanto talento en el terreno – desde jóvenes talentosos como los dominicanos Vladimir Guerrero Jr., Fernando Tatis Jr. y el venezolano Ronald Acuña Jr., hasta veteranos establecidos como Mookie Betts y Buster Posey – cualquier cosa puede suceder.\r\n\r\nMientras las estrellas se preparan para subirse al escenario, aquí responderemos algunas de tus preguntas sobre la edición 91 del Juego de Estrellas.\r\n\r\n¿Cómo puedo ver el juego?\r\n\r\nLa transmisión nacional en EE.UU. por FOX empezará a las 7:30 p.m. ET.\r\n\r\nEl juego también será transmitido en Canadá por Rogers Sportsnet y RDS. FOX Deportes transmitirá el partido en español en EE.UU., mientras que ESPN Deportes se encargará de la cobertura por audio\r\n\r\nQuiénes serán los lanzadores abridores?\r\n\r\nSerán anunciados por el manager de la Liga Americana (y Rays) Kevin Cash y el de la Liga Nacional (y Dodgers) Dave Roberts el lunes.\r\n\r\n¿Cuáles serán las alineaciones?\r\n\r\nEl orden específico también será anunciado por cada uno de los managers el lunes. Pero aquí están los jugadores elegidos por los aficionados.\r\n\r\n*denota a un jugador inactivo por lesión\r\n\r\n+Se decantó por no participar en el Juego de Estrellas', 4, 2, 'https://img.mlbstatic.com/mlb-images/image/private/t_16x9/t_w1024/mlb/wz2ooqdnlrlkcxsiz6fv'),
 (14, 'Argentina Campeón de la Copa América 2021', '2021-07-11 02:23:41', 'Argentina luego de 28 años se volvió a proclamar campeón de la Copa América, tras vencer a Brasil en el mítico Maracaná 1-0 con anotación de Ángel Di María, en la gran final del torneo más antiguo de selecciones. Lionel Messi su capitán luego de 5 finales disputadas con la “Albiceleste”, al fin levantó un trofeo de campeón con su selección.\r\n\r\nEn los primeros minutos Brasil manejó la posesión del balón, teniendo llegadas imprecisas al área de Emiliano Martínez con Neymar, pero los dirigidos por Scaloni mantuvieron sus líneas y presionaron la salida de los brasileños.\r\n\r\nPaulatinamente equipararon las acciones y al minuto 21 un pase medido del volante Rodrigo De Paúl encontró habilitado a Ángel Di María, quien con un “sombrerito” sorprendió al golero Ederson y convirtió el único tanto del compromiso, pero la verdeamarela, buscó igualar las acciones del encuentro. Pero con el 1-0 se fueron al descanso del primer tiempo.\r\n\r\nPara la segunda etapa la “canarinha” tomó la iniciativa nuevamente, pero la zaga de Argentina liderada por Nicolás Otamendi aguantó las llegadas de Richarlison junto a Neymar, pasando más de un susto que no engordaron la portería del golero Martínez.\r\n\r\nArgentina se consagró campeón de Copa América, la cual se hizo esquiva desde 1993, que ganaron en Ecuador, desde entonces perdieron 4 finales y en este 2021 con Messi como capitán consiguen el título para la albiceleste que comanda Scaloni.', 3, 1, 'https://i1.wp.com/copaamericacom.wpcomstaging.com/wp-content/uploads/Copia-de-Header-Thumb-Site-Copa-Ame%CC%81rica-49.png?fit=1744%2C778&ssl=1'),
 (15, 'Yankees apagan a Astros con joya de Cole', '2021-07-11 02:31:56', 'El abridor Gerrit Cole pidió al piloto Aaron Boone le dejara aplicar el último out, ponchó al cubano Yordan Álvarez con una bola rápida de 99 mph en su 129no lanzamiento -la cifra más alta de su carrera- y los Yanquis de Nueva York doblegaron el sábado 1-0 a los Astros de Houston.\r\n\r\nAaron Judge conectó un jonrón solitario y Cole hizo el resto, terminar el quinto partido completo y tercera blanqueada de su trayectoria. Sólo concedió tres hits. Su anterior blanqueada a nueve entradas fue contra Arizona el 4 de mayo de 2018, cuando era lanzador de Houston.\r\n\r\nLos Astros, líderes de la Liga Americana, que antes de esta serie habían sido blanqueados sólo una vez en toda la campaña, ahora fueron dejados en blanco por segundo partido consecutivo tras perder 4-0 en el primer encuentro el viernes en la noche.\r\n\r\nCole (9-4), lanzador de los Astros de 2018 a 2019, empató su cifra más baja de hits en la temporada y ponchó a 12. Efectuó 129 lanzamientos, la cifra más alta esta campaña en las mayores porque rebasaron los 126 de Trevor Bauer.\r\n\r\nZack Greinke (8-3) cargó con la derrota. Trabajó cuatro entradas en las que le anotaron tres hits y una carrera.\r\n\r\nPor los Yanquis, el venezolano Gleyber Torres de 4-1. El colombiano Gio Urshela de 4-1.\r\n\r\nPor los Astros, el venezolano José Altuve de 3-1. Los cubano Yuli Gurriel de 4-1 y Yordan Alvarez de 4-0. El puertorriqueño Martín Maldonado de 3-0. El dominicano Robel García de 3-0.', 1, 2, 'https://st1.uvnimg.com/34/19/b384e70f48bdba0cd21bb0cf9623/yankees.jpg'),
-(16, 'Los Bucks son el equipo más tonto en la historia en la NBA', '2021-07-11 02:41:07', 'Los dos primeros partidos de las Finales de la NBA han dejado un panorama despejado para que los Phoenix Suns se apunten el primer título de su historia. El equipo que dirige Monty Williams ganó los dos y se han colocado al borde del anillo después de una temporada sublime.\r\n\r\nPero igual que los Suns celebran sus dos victorias, los Milwaukee Bucks capean, como pueden, el temporal. Y es que tras su dubitativa puesta en escena en las Finales arrecian las críticas contra el equipo de Wisconsin que ahora tienen el tremendo reto de tratar de remontar un 2-0 en las Finales.\r\n\r\nEntre los más críticos de los Bucks está el ex de la NBA y ahora analista Kendrick Perkins, conocido por no morderse la lengua ante nada ni nadie. Perkins ha catalogado a los Bucks como \"el equipo más tonto de la historia de las Finales\", y lo argumenta con un vídeo en el que habla de lo \"perturbador que es ver cómo juegan, de su falta de liderazgo y de lo ridículo que resulta la poca ventaja que sacan de los desajustes desfensivos\".\r\n\r\n\r\nKendrick Perkins tira con bala a Milwaukee tras los dos primeros partidos de la serie\r\n\r\nEnviar por email\r\n\r\n41\r\nMostrar comentarios\r\nSegundo partido. Devin Booker y los Suns neutralizan a Antetokounmpo\r\nContracrónica. Si Giannis es todo lo que tienen los Bucks... \"Suns in four\"\r\nLos dos primeros partidos de las Finales de la NBA han dejado un panorama despejado para que los Phoenix Suns se apunten el primer título de su historia. El equipo que dirige Monty Williams ganó los dos y se han colocado al borde del anillo después de una temporada sublime.\r\n\r\nPero igual que los Suns celebran sus dos victorias, los Milwaukee Bucks capean, como pueden, el temporal. Y es que tras su dubitativa puesta en escena en las Finales arrecian las críticas contra el equipo de Wisconsin que ahora tienen el tremendo reto de tratar de remontar un 2-0 en las Finales.\r\n\r\nEntre los más críticos de los Bucks está el ex de la NBA y ahora analista Kendrick Perkins, conocido por no morderse la lengua ante nada ni nadie. Perkins ha catalogado a los Bucks como \"el equipo más tonto de la historia de las Finales\", y lo argumenta con un vídeo en el que habla de lo \"perturbador que es ver cómo juegan, de su falta de liderazgo y de lo ridículo que resulta la poca ventaja que sacan de los desajustes desfensivos\".\r\n\r\n\r\nPerkins añade que los Bucks no están mostrando el nivel de equipo campeón que se les suponía, cometiendo errores infantiles y permitiendo situaciones que un equipo finalista de la NBA se supone que debe cuidar. Excesivas pérdidas de balón muy evitables, malas decisiones en los tiros, ataques precipitados cuando llegaban con ventaja... Todo ello ha redundado en el 2-0 que ahora lucen y tienen que remontar.\r\n\r\nY no se trata de cargar las tintas contra Giannis Antetokounmpo, porque el esfuerzo del griego volviendo tras su lesión y el rendimiento en el segundo partido fueron dignos de elogio: 42 puntos y 12 rebotes. Pero está muy solo.', 1, 3, 'https://phantom-marca.unidadeditorial.es/09a1b91bc8437e047f835c82caed41b1/resize/1320/f/jpg/assets/multimedia/imagenes/2021/07/05/16255128738677.jpg');
+(16, 'Los Bucks son el equipo más tonto en la historia en la NBA', '2021-07-11 02:41:07', 'Los dos primeros partidos de las Finales de la NBA han dejado un panorama despejado para que los Phoenix Suns se apunten el primer título de su historia. El equipo que dirige Monty Williams ganó los dos y se han colocado al borde del anillo después de una temporada sublime.\r\n\r\nPero igual que los Suns celebran sus dos victorias, los Milwaukee Bucks capean, como pueden, el temporal. Y es que tras su dubitativa puesta en escena en las Finales arrecian las críticas contra el equipo de Wisconsin que ahora tienen el tremendo reto de tratar de remontar un 2-0 en las Finales.\r\n\r\nEntre los más críticos de los Bucks está el ex de la NBA y ahora analista Kendrick Perkins, conocido por no morderse la lengua ante nada ni nadie. Perkins ha catalogado a los Bucks como \"el equipo más tonto de la historia de las Finales\", y lo argumenta con un vídeo en el que habla de lo \"perturbador que es ver cómo juegan, de su falta de liderazgo y de lo ridículo que resulta la poca ventaja que sacan de los desajustes desfensivos\".\r\n\r\n\r\nKendrick Perkins tira con bala a Milwaukee tras los dos primeros partidos de la serie\r\n\r\nEnviar por email\r\n\r\n41\r\nMostrar comentarios\r\nSegundo partido. Devin Booker y los Suns neutralizan a Antetokounmpo\r\nContracrónica. Si Giannis es todo lo que tienen los Bucks... \"Suns in four\"\r\nLos dos primeros partidos de las Finales de la NBA han dejado un panorama despejado para que los Phoenix Suns se apunten el primer título de su historia. El equipo que dirige Monty Williams ganó los dos y se han colocado al borde del anillo después de una temporada sublime.\r\n\r\nPero igual que los Suns celebran sus dos victorias, los Milwaukee Bucks capean, como pueden, el temporal. Y es que tras su dubitativa puesta en escena en las Finales arrecian las críticas contra el equipo de Wisconsin que ahora tienen el tremendo reto de tratar de remontar un 2-0 en las Finales.\r\n\r\nEntre los más críticos de los Bucks está el ex de la NBA y ahora analista Kendrick Perkins, conocido por no morderse la lengua ante nada ni nadie. Perkins ha catalogado a los Bucks como \"el equipo más tonto de la historia de las Finales\", y lo argumenta con un vídeo en el que habla de lo \"perturbador que es ver cómo juegan, de su falta de liderazgo y de lo ridículo que resulta la poca ventaja que sacan de los desajustes desfensivos\".\r\n\r\n\r\nPerkins añade que los Bucks no están mostrando el nivel de equipo campeón que se les suponía, cometiendo errores infantiles y permitiendo situaciones que un equipo finalista de la NBA se supone que debe cuidar. Excesivas pérdidas de balón muy evitables, malas decisiones en los tiros, ataques precipitados cuando llegaban con ventaja... Todo ello ha redundado en el 2-0 que ahora lucen y tienen que remontar.\r\n\r\nY no se trata de cargar las tintas contra Giannis Antetokounmpo, porque el esfuerzo del griego volviendo tras su lesión y el rendimiento en el segundo partido fueron dignos de elogio: 42 puntos y 12 rebotes. Pero está muy solo.', 1, 3, 'https://phantom-marca.unidadeditorial.es/09a1b91bc8437e047f835c82caed41b1/resize/1320/f/jpg/assets/multimedia/imagenes/2021/07/05/16255128738677.jpg'),
+(17, '¡Italia, campeón de la Eurocopa!', '2021-07-19 00:15:22', 'alia se coronó este domingo en la Eurocopa 2020 luego de la tanda de penales frente a Inglaterra. Esta es la segunda vez que los italianos se llevan a casa el máximo torneo de selecciones en Europa y la primera vez en 15 años que ganan un torneo de selección mayor.\n\n\nEl gol de Luke Shaw en los dos primeros minutos de la final dio a Inglaterra una ventaja que parecía que iba a mantener toda la noche, antes de que una serie de rebotes a mediados de la segunda parte permitiera a Leonardo Bonucci marcar el empate para Italia.\n\nDurante el resto del partido pareció que la prórroga y los penaltis eran inevitables, ya que ninguno de los dos equipos parecía estar dispuesto o ser lo suficientemente atrevido para comprometer a suficientes jugadores en la delantera como para poner en apuros a los defensores contrarios.', 3, 1, 'https://i.ytimg.com/vi/q0IOISxOMxs/maxresdefault.jpg');
 
 -- --------------------------------------------------------
 
@@ -289,7 +295,8 @@ INSERT INTO `seguimientos` (`id`, `id_cliente`, `id_equipo`, `fecha`) VALUES
 (19, 8, 6, '2021-07-16 05:04:18'),
 (20, 8, 3, '2021-07-16 05:04:18'),
 (21, 8, 8, '2021-07-16 05:04:19'),
-(22, 8, 9, '2021-07-16 05:04:20');
+(22, 8, 9, '2021-07-16 05:04:20'),
+(23, 10, 2, '2021-07-19 00:53:40');
 
 -- --------------------------------------------------------
 
@@ -420,27 +427,27 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `apuestas`
 --
 ALTER TABLE `apuestas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `apuestas_clientes`
 --
 ALTER TABLE `apuestas_clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `autores`
 --
 ALTER TABLE `autores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `contactos`
 --
@@ -450,17 +457,17 @@ ALTER TABLE `contactos`
 -- AUTO_INCREMENT de la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `noticias`
 --
 ALTER TABLE `noticias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT de la tabla `recargas`
 --
 ALTER TABLE `recargas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
@@ -470,7 +477,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `seguimientos`
 --
 ALTER TABLE `seguimientos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
