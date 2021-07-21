@@ -57,7 +57,7 @@
                               chips
                               :loading="deshabilitado"
                               :rules="reglas"
-                              v-model="apuesta.id_equipo1"
+                              v-model="apuesta.id_equipo1.nombre"
                               @change="ejecutarCambio"
                               :items="equipoSelect"
                               label="Primer Equipó A Competir"
@@ -73,7 +73,7 @@
                               chips
                               :loading="deshabilitado"
                               :rules="reglas"
-                              v-model="apuesta.id_equipo2"
+                              v-model="apuesta.id_equipo2.nombre"
                               ref="input"
                               @change="ejecutarCambio"
                               :items="equipoSelect"
@@ -246,8 +246,8 @@ export default {
       equipoSelect: [],
       editarApuesta: false,
       apuesta: {
-        id_equipo1: "",
-        id_equipo2: "",
+        id_equipo1: {nombre:""},
+        id_equipo2: {nombre:""},
         fecha_resultado: new Date(
           Date.now() - new Date().getTimezoneOffset() * 60000
         )
@@ -261,8 +261,8 @@ export default {
         {
           sortable: false,
         },
-        { text: "Primer Equipo", value: "id_equipo1" },
-        { text: "Segúndo Equipo", value: "id_equipo2" },
+        { text: "Primer Equipo", value: "id_equipo1.nombre" },
+        { text: "Segúndo Equipo", value: "id_equipo2.nombre" },
         { text: "Costo de la apuesta (coins)", value: "costo" },
         { text: "Ganancía de la apuesta (coins)", value: "ganancia" },
         { text: "Fecha de modificación", value: "fecha" },
@@ -294,13 +294,13 @@ export default {
       this.obtenerEquipos();
     },
     ejecutarCambio() {
-      if (this.apuesta.id_equipo1 === this.apuesta.id_equipo2) {
+      if (this.apuesta.id_equipo1.nombre === this.apuesta.id_equipo2.nombre) {
         this.$refs.form.validate();
         this.mostrarAlerta(
           "error",
           "Los equipos en la apuesta no debe ser los mismos."
         );
-        this.apuesta.id_equipo2 = null;
+        this.apuesta.id_equipo2.nombre = null;
         return;
       }
     },
@@ -313,7 +313,7 @@ export default {
     eliminarApuesta(informacionApuesta) {
       Swal.fire({
         title: "Eliminar apuesta",
-        text: `¿Estas seguro en eliminar la apuesta ${informacionApuesta.id_equipo1} VS ${informacionApuesta.id_equipo2}?`,
+        text: `¿Estas seguro en eliminar la apuesta ${informacionApuesta.id_equipo1.nombre} VS ${informacionApuesta.id_equipo2.nombre}?`,
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#f14545",
@@ -341,10 +341,10 @@ export default {
     },
     enviarApuesta() {
       if (
-        !this.apuesta.id_equipo1 ||
-        !this.apuesta.id_equipo2 ||
-        !this.apuesta.id_equipo1.length ||
-        !this.apuesta.id_equipo2.length ||
+        !this.apuesta.id_equipo1.nombre ||
+        !this.apuesta.id_equipo2.nombre ||
+        !this.apuesta.id_equipo1.nombre.length ||
+        !this.apuesta.id_equipo2.nombre.length ||
         !this.apuesta.ganancia ||
         !this.apuesta.costo
       ) {
@@ -354,7 +354,7 @@ export default {
         );
         return this.$refs.form.validate();
       }
-      if (this.apuesta.id_equipo1 === this.apuesta.id_equipo2) {
+      if (this.apuesta.id_equipo1.nombre === this.apuesta.id_equipo2.nombre) {
         this.$refs.form.validate();
         this.mostrarAlerta(
           "error",
@@ -400,10 +400,10 @@ export default {
     },
     async crearApuesta(apuestaCrear) {
       const [equipoUno] = this.equipos.filter(
-        (equipo) => equipo.nombre === apuestaCrear.id_equipo1
+        (equipo) => equipo.nombre === apuestaCrear.id_equipo1.nombre
       );
       const [equipoDos] = this.equipos.filter(
-        (equipo) => equipo.nombre === apuestaCrear.id_equipo2
+        (equipo) => equipo.nombre === apuestaCrear.id_equipo2.nombre
       );
       const apuestaEnviar = JSON.parse(JSON.stringify(apuestaCrear));
       apuestaEnviar.id_equipo1 = equipoUno.id;
@@ -425,8 +425,8 @@ export default {
       this.editarApuesta = false;
       this.$refs.form.resetValidation();
       this.apuesta = {
-        id_equipo1: "",
-        id_equipo2: "",
+        id_equipo1: {nombre:""},
+        id_equipo2: {nombre:""},
         fecha_resultado:new Date(
           Date.now() - new Date().getTimezoneOffset() * 60000
         )
@@ -490,4 +490,3 @@ export default {
   },
 };
 </script>
-
