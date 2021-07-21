@@ -9,6 +9,8 @@ import Equipos from '@/views/Equipos.vue';
 import Contacto from '@/views/Contacto.vue';
 import Seguimientos from '@/views/Seguimientos.vue';
 import SolicitudRecarga from '@/views/SolicitudRecarga.vue';
+import Apuestas from '@/views/Apuestas.vue';
+import ApuestasDelCliente from '@/views/ApuestasDelCliente.vue';
 import {
   necesitaAutenticacion,
   noNecesitaAutenticacion,
@@ -33,7 +35,7 @@ const routes = [
     path: '/registro',
     name: 'Registro',
     component: Registro,
-    beforeEnter:noNecesitaAutenticacion,
+    beforeEnter: noNecesitaAutenticacion,
     meta: {
       title: 'Registrate & comienza a disfrutar | La Quiniela',
     },
@@ -42,7 +44,7 @@ const routes = [
     path: '/iniciar-sesion',
     name: 'Login',
     component: Login,
-    beforeEnter:noNecesitaAutenticacion,
+    beforeEnter: noNecesitaAutenticacion,
     meta: {
       title: 'Iniciar Sesión | La Quiniela',
     },
@@ -83,7 +85,7 @@ const routes = [
     path: '/seguimientos',
     name: 'Seguimientos',
     component: Seguimientos,
-    beforeEnter:necesitaAutenticacion,
+    beforeEnter: necesitaAutenticacion,
     meta: {
       title: 'Seguimiento del cliente  | La Quiniela',
     },
@@ -92,9 +94,26 @@ const routes = [
     path: '/solicitud-recarga',
     name: 'SolicitudRecarga',
     component: SolicitudRecarga,
-    beforeEnter:necesitaAutenticacion,
+    beforeEnter: necesitaAutenticacion,
+    meta: {
+      title: 'Apuestas que has realizado  | La Quiniela',
+    },
+  },
+  {
+    path: '/apuesta-cliente',
+    name: 'ApuestaCliente',
+    component: ApuestasDelCliente,
+    beforeEnter: necesitaAutenticacion,
     meta: {
       title: 'Solicitud de recarga para apuestas  | La Quiniela',
+    },
+  },
+  {
+    path: '/apuestas',
+    name: 'Apuestas',
+    component: Apuestas,
+    meta: {
+      title: 'Apuestas registradas  | La Quiniela',
     },
   },
   {
@@ -114,3 +133,4 @@ router.afterEach((to) => {
 });
 
 export default router;
+
