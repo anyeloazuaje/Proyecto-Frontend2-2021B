@@ -101,6 +101,7 @@
 
 <script>
 import { mdbIcon } from "mdbvue";
+import { MODIFICAR_COINS } from "@/store/types";
 import Swal from "sweetalert2";
 import Spinner from "@/components/Spinner";
 export default {
@@ -117,11 +118,19 @@ export default {
   },
   created() {
     this.obtenerApuestaCliente();
+    this.obtenerCoins();
   },
   methods: {
     formatearFecha(fecha) {
       const newFecha = new Date(fecha);
       return newFecha.toLocaleDateString();
+    },
+    async obtenerCoins() {
+      const clienteID = this.$store.getters.idCliente;
+      const { data } = await this.axios.get(
+        `/cliente/obtener-coins/${clienteID}`
+      );
+      this.$store.dispatch(MODIFICAR_COINS, data);
     },
     async obtenerApuestaCliente() {
       try {
