@@ -43,7 +43,7 @@
             </p>
           </template>
           <template v-else>
-            <div class="contenedor-boton">
+            <div class="contenedor-boton mb-3">
               <mdb-btn
                 class="boton"
                 title="Cancelar edición"
@@ -52,7 +52,7 @@
                 @click="limpiarDatosEdicion"
               />
             </div>
-            <h2 class="h1-responsive font-weight-bold text-center my-5 titulo">
+            <h2 class="h1-responsive font-weight-bold text-center my-5 titulo margin-top">
               Actualizar datos de la Solicitud
             </h2>
             <p class="text-center w-responsive mx-auto mb-5 gray-text">
@@ -202,6 +202,7 @@
                   <mdb-btn
                     color="danger"
                     title="Cancelar solicitud"
+                   :disabled="deshabilitado"
                     :icon="deshabilitado ? 'circle-notch' : ''"
                     :icon-class="deshabilitado ? 'fa-spin' : ''"
                     @click="cancelarSolicitud(solicitud)"
@@ -212,6 +213,7 @@
                       icon="creative-commons-nc"
                   /></mdb-btn>
                   <mdb-btn
+                   :disabled="deshabilitado"
                     :icon="deshabilitado ? 'circle-notch' : 'id-card'"
                     :icon-class="deshabilitado ? 'fa-spin' : ''"
                     @click="editarSolicitud(solicitud)"
@@ -499,4 +501,78 @@ export default {
   color: #3c3c3c;
   font-weight: bold;
 }
+</style>
+<style scoped>
+.margin-top{
+  margin-top:3em !important;
+}
+@media only screen and (max-width: 830px),
+  (min-device-width: 768px) and (max-device-width: 1024px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    margin: 0 0 1rem 0;
+    margin-top: 2em;
+  }
+
+  tr:nth-child(odd) {
+    background: #ccc;
+  }
+
+  td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  td:before {
+    position: absolute;
+    top: 0;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    font-weight: bold;
+  }
+  td:nth-of-type(1):before {
+    content: "Usuario:";
+  }
+  td:nth-of-type(2):before {
+    content: "Nombre del titular:";
+  }
+  td:nth-of-type(3):before {
+    content: "Apellido del titular:";
+  }
+  td:nth-of-type(4):before {
+    content: "Tarjeta:";
+  }
+  td:nth-of-type(5):before {
+    content: "N° Tarjeta:";
+  }
+  td:nth-of-type(6):before {
+    content: "Tiempo Transcurrido:";
+  }
+  td:nth-of-type(7):before {
+    content: "Acción";
+  }
+}
+.bg-table {
+  background: #3c59a9;
+  color: white;
+}
+
 </style>
