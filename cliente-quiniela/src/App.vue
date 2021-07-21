@@ -1,11 +1,11 @@
 <template>
   <div>
     <Navbar />
-    <transition name="animacion" mode="out-in">
-      <div class="contenedor-vista">
+    <div class="contenedor-vista">
+      <transition name="animacion" mode="out-in">
         <router-view :key="$route.fullPath" />
-      </div>
-    </transition>
+      </transition>
+    </div>
     <Footer />
   </div>
 </template>
@@ -53,4 +53,3 @@ export default {
   min-height: 100vh;
 }
 </style>
-
