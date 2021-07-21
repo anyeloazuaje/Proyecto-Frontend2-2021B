@@ -7,10 +7,7 @@
           Contáctanos
         </h2>
         <p class="text-center w-responsive mx-auto pb-5">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error
-          amet numquam iure provident voluptate esse quasi, veritatis totam
-          voluptas nostrum quisquam eum porro a pariatur veniam.
-        </p>
+          Así como tu eres fanático del deporte nosotros somos fanáticos de tu opinión, envíanos tus mensajes de contacto para mejor tu experiencia en La Quiniela.</p>
         <mdb-row>
           <mdb-col lg="7">
             <div
@@ -60,7 +57,7 @@
                   </h3>
                 </div>
                 <p class="dark-grey-text text-center">
-                  We'll write rarely, but only the best content.
+                  Los administradores de La Quiniela se contáctaran contigo.
                 </p>
                 <div class="md-form">
                   <mdb-input
